@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Note-Taking-Calculator-App/1.0.0": {
+        "runtime": {
+          "Note-Taking-Calculator-App.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Note-Taking-Calculator-App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
