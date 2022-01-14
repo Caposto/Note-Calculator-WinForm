@@ -110,7 +110,6 @@
             this.readButton.TabIndex = 7;
             this.readButton.Text = "Read";
             this.readButton.UseVisualStyleBackColor = true;
-            this.readButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // deleteButton
             // 
@@ -139,6 +138,7 @@
             this.Controls.Add(this.titleButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
