@@ -11,18 +11,23 @@ namespace Note_Taking_Calculator_App
             InitializeComponent();
         }
 
+        // FIXME: Can only read one xml file at a time due to accessibility
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            table.Columns.Add("Title", typeof(string));
-            table.Columns.Add("Body", typeof(string));
-            dataGridView1.DataSource = table;
+            //table.Columns.Add("Title", typeof(string));
+            //table.Columns.Add("Body", typeof(string));
+
+            DataSet xmlFiles = new DataSet();
+            xmlFiles.ReadXml(@"C:\Users\chris\OneDrive\Documents\Notes");
+            dataGridView1.DataSource = xmlFiles.Tables[0].DefaultView;
 
             // Hides the body column in table
-            dataGridView1.Columns["Body"].Visible = false;
+            //dataGridView1.Columns["Body"].Visible = false;
 
             // Adjust title column width
-            dataGridView1.Columns["Title"].Width = 275;
+            //dataGridView1.Columns["Title"].Width = 275;
 
+            
         }
 
         // Creates a new note by clearing text in the title and body text boxes
@@ -54,14 +59,11 @@ namespace Note_Taking_Calculator_App
         }
 
         // Deletes a note when delete button is pressed
+        // FIXME: Need an exception for when hitting delete button with nothing selected
         private void deleteButton_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
-
-            // table.Rows.RemoveAt(index);
-
-            table.Rows[index].Delete();
+            table.Rows.RemoveAt(index);
         }
-
     }
 }
