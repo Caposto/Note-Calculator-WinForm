@@ -14,20 +14,33 @@ namespace Note_Taking_Calculator_App
         // FIXME: Can only read one xml file at a time due to accessibility
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            //table.Columns.Add("Title", typeof(string));
-            //table.Columns.Add("Body", typeof(string));
+            // Accesses xmls but only works for 1 file at a time
+            // DataSet xmlFiles = new DataSet();
+            // xmlFiles.ReadXml(@"C:\Users\chris\OneDrive\Documents\Notes\Scratchpad.xml");
+            // dataGridView1.DataSource = xmlFiles.Tables[0].DefaultView;
 
-            DataSet xmlFiles = new DataSet();
-            xmlFiles.ReadXml(@"C:\Users\chris\OneDrive\Documents\Notes");
-            dataGridView1.DataSource = xmlFiles.Tables[0].DefaultView;
+            string folderPath = @"C:\Users\chris\OneDrive\Documents\Notes";
+            dataGridView1.DataSource = new System.IO.DirectoryInfo(folderPath).GetFiles();
 
-            // Hides the body column in table
-            //dataGridView1.Columns["Body"].Visible = false;
+            // Hides unwanted columns
+            // dataGridView1.Columns["Body"].Visible = false;
+            // Length, DirectoryName, Directory, IsReadOnly, FullName, Extension, Exists, CreationTime, CreationTimeUTC
+            // LastAccessTime, LastAccessTimeUTC, LastWriteTime, LastWriteTimeUTC, LinkTarget, Attributes
+
+            string[] hiddenColumns = new string[] { "Length", "DirectoryName", "Directory", "IsReadOnly",
+                                                    "FullName", "Extension", "Exists", "CreationTime",
+                                                    "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
+                                                    "LastWriteTime", "LastWriteTimeUTC", "LinkTarget", "Attributes"};
+
+            foreach (string hiddenColumn in hiddenColumns)
+            {
+                dataGridView1.Columns[hiddenColumn].Visible = false;
+            }
 
             // Adjust title column width
-            //dataGridView1.Columns["Title"].Width = 275;
+            dataGridView1.Columns["Name"].Width = 275;
 
-            
+
         }
 
         // Creates a new note by clearing text in the title and body text boxes
