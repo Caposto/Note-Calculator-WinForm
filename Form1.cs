@@ -113,7 +113,12 @@ namespace Note_Taking_Calculator_App
         private void deleteButton_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
-            table.Rows.RemoveAt(index);
+            string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
+
+            File.Delete(NoteDirectory + selectedFileName);
+
+            // update data table
+            dataGridView1.DataSource = Dir.GetFiles("*.xml");
         }
     }
 }
