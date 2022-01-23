@@ -7,6 +7,7 @@ namespace Note_Taking_Calculator_App
     {
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
         DataTable table = new DataTable();
+        private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
         public Form1()
         {
@@ -14,13 +15,11 @@ namespace Note_Taking_Calculator_App
         }
 
         // Load Form and connect or create notes folder on local machine to the application
+        // ADDFEATURE: Allow user to name the folder themselves
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            string folderPath = NoteDirectory;
-            DirectoryInfo Dir = new DirectoryInfo(folderPath);
-
             // Check to see if user has a notes folder
-            if (Directory.Exists(folderPath))
+            if (Directory.Exists(NoteDirectory))
             {
                 // Get only .xml files
                 FileInfo[] xmlDocs = Dir.GetFiles("*.xml");
@@ -53,11 +52,11 @@ namespace Note_Taking_Calculator_App
             else
             {
                 titleText.Text = "Created a new folder for your Notes!";
-                Directory.CreateDirectory(folderPath);
+                Directory.CreateDirectory(NoteDirectory);
             }
         }
 
-        // Creates a new file by clearing text displays (to create xml hit save button)
+        // Creates a new file by clearing text displays (to actually create xml hit save button)
         private void newButton_Click(object sender, EventArgs e)
         {
             titleText.Clear();
@@ -65,7 +64,6 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
-        // FIXME: Saving a new note does not update the notes displayed
         private void saveButton_Click(object sender, EventArgs e)
         {
             // Create a new .xml file
@@ -88,8 +86,7 @@ namespace Note_Taking_Calculator_App
             }
 
             // Update data table
-            string folderPath = @"C:\Users\chris\OneDrive\Documents\Notes\WinFormsNotes";
-            dataGridView1.DataSource = new System.IO.DirectoryInfo(folderPath).GetFiles();
+            dataGridView1.DataSource = Dir.GetFiles("*.xml");
 
             // Clear text
             titleText.Clear();
