@@ -23,13 +23,9 @@ namespace Note_Taking_Calculator_App
             // dataGridView1.DataSource = xmlFiles.Tables[0].DefaultView;
 
             string folderPath = @"C:\Users\chris\OneDrive\Documents\Notes\WinFormsNotes";
-            dataGridView1.DataSource = new System.IO.DirectoryInfo(folderPath).GetFiles();
+            dataGridView1.DataSource = new System.IO.DirectoryInfo(folderPath).GetFiles("*.xml");
 
-            // Hides unwanted columns
-            // dataGridView1.Columns["Body"].Visible = false;
-            // Length, DirectoryName, Directory, IsReadOnly, FullName, Extension, Exists, CreationTime, CreationTimeUTC
-            // LastAccessTime, LastAccessTimeUTC, LastWriteTime, LastWriteTimeUTC, LinkTarget, Attributes
-
+            // Hide unwanted columns
             string[] hiddenColumns = new string[] { "Length", "DirectoryName", "Directory", "IsReadOnly",
                                                     "FullName", "Extension", "Exists", "CreationTime",
                                                     "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
