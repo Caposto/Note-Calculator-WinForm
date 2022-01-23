@@ -6,7 +6,7 @@ namespace Note_Taking_Calculator_App
     public partial class Form1 : Form
     {
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
-        DataTable table = new DataTable();
+        DataTable table = new DataTable(); // FIXME: Find out if Data Table is needed
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
         public Form1()
@@ -96,13 +96,16 @@ namespace Note_Taking_Calculator_App
         // Read/Edit a note when read button clicked
         private void readButton_Click_1(object sender, EventArgs e)
         {
+            // index is equal to that of the cell selected
             int index = dataGridView1.CurrentCell.RowIndex;
+            string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
 
-            if (index >= 0)
-            {
-                titleText.Text = table.Rows[index].ItemArray[0].ToString();
-                bodyText.Text = table.Rows[index].ItemArray[1].ToString();
-            }
+
+            titleText.Text = selectedFileName.Substring(0, selectedFileName.Length - 4);
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load(NoteDirectory + selectedFileName);
+            bodyText.Text = doc.SelectSingleNode("//body").InnerText;
         }
 
         // Deletes a note when delete button is pressed
