@@ -13,31 +13,48 @@ namespace Note_Taking_Calculator_App
             InitializeComponent();
         }
 
-        // FIXME: Refactor and cleanup (for tomorrow 1/23)
-        // FIXME: Get Notes to say "Title" Instead of "Name"
+        // Load Form and connect or create notes folder on local machine to the application
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            // Accesses xmls but only works for 1 file at a time
-            // DataSet xmlFiles = new DataSet();
-            // xmlFiles.ReadXml(@"C:\Users\chris\OneDrive\Documents\Notes\Scratchpad.xml");
-            // dataGridView1.DataSource = xmlFiles.Tables[0].DefaultView;
+            string folderPath = NoteDirectory;
+            DirectoryInfo Dir = new DirectoryInfo(folderPath);
 
-            string folderPath = @"C:\Users\chris\OneDrive\Documents\Notes\WinFormsNotes";
-            dataGridView1.DataSource = new System.IO.DirectoryInfo(folderPath).GetFiles("*.xml");
+            // Check to see if user has a notes folder
+            if (Directory.Exists(folderPath))
+            {
+                // Get only .xml files
+                FileInfo[] xmlDocs = Dir.GetFiles("*.xml");
 
-            // Hide unwanted columns
-            string[] hiddenColumns = new string[] { "Length", "DirectoryName", "Directory", "IsReadOnly",
+                if (xmlDocs.Count() != 0)
+                {
+                    dataGridView1.DataSource = xmlDocs;
+
+                    // Hide unwanted columns
+                    string[] hiddenColumns = new string[] { "Length", "DirectoryName", "Directory", "IsReadOnly",
                                                     "FullName", "Extension", "Exists", "CreationTime",
                                                     "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
                                                     "LastWriteTime", "LastWriteTimeUTC", "LinkTarget", "Attributes"};
 
-            foreach (string hiddenColumn in hiddenColumns)
-            {
-                dataGridView1.Columns[hiddenColumn].Visible = false;
-            }
+                    foreach (string hiddenColumn in hiddenColumns)
+                    {
+                        dataGridView1.Columns[hiddenColumn].Visible = false;
+                    }
 
-            // Adjust title column width
-            dataGridView1.Columns["Name"].Width = 275;
+                    // Adjust title column width and change the name of the column
+                    dataGridView1.Columns["Name"].HeaderText = "Title";
+                    dataGridView1.Columns["Name"].Width = 275;
+                }
+                else
+                {
+                    titleText.Text = "Press New to Make a Note!";
+                }
+            }
+            // If no notes folder found, make one title WinFormsNotes
+            else
+            {
+                titleText.Text = "Created a new folder for your Notes!";
+                Directory.CreateDirectory(folderPath);
+            }
         }
 
         // Creates a new file by clearing text displays (to create xml hit save button)
