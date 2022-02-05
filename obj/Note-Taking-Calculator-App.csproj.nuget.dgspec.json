@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\Note-Taking-Calculator-App.csproj": {}
+    "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\Note-Taking-Calculator-App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\Note-Taking-Calculator-App.csproj": {
+    "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\Note-Taking-Calculator-App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\Note-Taking-Calculator-App.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\Note-Taking-Calculator-App.csproj",
         "projectName": "Note-Taking-Calculator-App",
-        "projectPath": "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\Note-Taking-Calculator-App.csproj",
+        "projectPath": "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\Note-Taking-Calculator-App.csproj",
         "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\obj\\",
+        "outputPath": "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
