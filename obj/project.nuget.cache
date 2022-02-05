@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y1w34gto2wWyFKLoG4ixB7Eub5rVRpSPXSnPE8tkTQmCkosQrzaGSG66/TIqTYmFN111u11ageDMo+R1vTeEJg==",
+  "dgSpecHash": "NfMDuowTPN8rE0eVZzJgi3W9b+A2ORMI6dYNIAIosePCJFB/yn95/q7tMxWztgUhgiJlPegZwicUP95WbFbZhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chris\\OneDrive\\Documents\\C# Code\\Note-Taking-Calculator-App\\Note-Taking-Calculator-App.csproj",
+  "projectFilePath": "C:\\Users\\chris\\Source\\Repos\\Note-Calculator-WinForm\\Note-Taking-Calculator-App.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
