@@ -6,7 +6,6 @@ namespace Note_Taking_Calculator_App
     public partial class Form1 : Form
     {
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
-        DataTable table = new DataTable(); // FIXME: Find out if Data Table is needed
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
         public Form1()
@@ -15,7 +14,6 @@ namespace Note_Taking_Calculator_App
         }
 
         // Load Form and connect or create notes folder on local machine to the application
-        // ADDFEATURE: Allow user to name the folder themselves
         private void Form1_Load_1(object sender, EventArgs e)
         {
             // Check to see if user has a notes folder
@@ -59,8 +57,7 @@ namespace Note_Taking_Calculator_App
         // Creates a new file by clearing text displays (to actually create xml hit save button)
         private void newButton_Click(object sender, EventArgs e)
         {
-            titleText.Clear();
-            bodyText.Clear();
+            clearText();
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
@@ -85,40 +82,59 @@ namespace Note_Taking_Calculator_App
                 NewNote.Close();
             }
 
-            // Update data table
-            dataGridView1.DataSource = Dir.GetFiles("*.xml");
-
-            // Clear text
-            titleText.Clear();
-            bodyText.Clear();
+            updateNotes();
+            clearText();
         }
 
         // Read/Edit a note when read button clicked
         private void readButton_Click_1(object sender, EventArgs e)
         {
-            // index is equal to that of the cell selected
-            int index = dataGridView1.CurrentCell.RowIndex;
-            string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
+            try
+            {
+                // Index is equal to that of the cell selected
+                int index = dataGridView1.CurrentCell.RowIndex;
+                string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
+                // -4 trims the ".xml" part of the file
+                titleText.Text = selectedFileName.Substring(0, selectedFileName.Length - 4);
+                XmlDocument doc = new XmlDocument();
 
-
-            titleText.Text = selectedFileName.Substring(0, selectedFileName.Length - 4);
-            XmlDocument doc = new XmlDocument();
-
-            doc.Load(NoteDirectory + selectedFileName);
-            bodyText.Text = doc.SelectSingleNode("//body").InnerText;
+                doc.Load(NoteDirectory + selectedFileName);
+                bodyText.Text = doc.SelectSingleNode("//body").InnerText;
+            }
+            catch (NullReferenceException)
+            {
+                titleText.Text = "Select a file to read!";
+            }
         }
 
         // Deletes a note when delete button is pressed
-        // FIXME: Need an exception for when hitting delete button with nothing selected
         private void deleteButton_Click(object sender, EventArgs e)
+        { 
+            try
+            {
+                int index = dataGridView1.CurrentCell.RowIndex;
+                string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
+                File.Delete(NoteDirectory + selectedFileName);
+                updateNotes();
+            }
+            catch (NullReferenceException)
+            {
+                titleText.Text = "Cannot delete nothing!";
+            }
+
+        }
+
+        // Used in the read and delete methods, updates the notes displayed gathering only .xml files
+        private void updateNotes()
         {
-            int index = dataGridView1.CurrentCell.RowIndex;
-            string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
-
-            File.Delete(NoteDirectory + selectedFileName);
-
-            // update data table
             dataGridView1.DataSource = Dir.GetFiles("*.xml");
+        }
+
+        // Used in the new and save methods, clear texts in both the title and body text boxes
+        private void clearText()
+        {
+            titleText.Clear();
+            bodyText.Clear();
         }
     }
 }
