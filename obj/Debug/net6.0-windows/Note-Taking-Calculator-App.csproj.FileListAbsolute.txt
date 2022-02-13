@@ -32,3 +32,20 @@ C:\Users\chris\Source\Repos\Note-Calculator-WinForm\obj\Debug\net6.0-windows\Not
 C:\Users\chris\Source\Repos\Note-Calculator-WinForm\obj\Debug\net6.0-windows\ref\Note-Taking-Calculator-App.dll
 C:\Users\chris\Source\Repos\Note-Calculator-WinForm\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.pdb
 C:\Users\chris\source\repos\Note-Calculator-WinForm\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.genruntimeconfig.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\Note-Taking-Calculator-App.exe
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\Note-Taking-Calculator-App.deps.json
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\Note-Taking-Calculator-App.runtimeconfig.json
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\Note-Taking-Calculator-App.dll
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\ref\Note-Taking-Calculator-App.dll
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\bin\Debug\net6.0-windows\Note-Taking-Calculator-App.pdb
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.csproj.AssemblyReference.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note_Taking_Calculator_App.Form1.resources
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.csproj.GenerateResource.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.AssemblyInfoInputs.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.AssemblyInfo.cs
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.csproj.CoreCompileInputs.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.dll
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\ref\Note-Taking-Calculator-App.dll
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.pdb
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.genruntimeconfig.cache

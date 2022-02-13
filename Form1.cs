@@ -87,7 +87,7 @@ namespace Note_Taking_Calculator_App
         }
 
         // Read/Edit a note when read button clicked
-        private void readButton_Click_1(object sender, EventArgs e)
+        private void readButton_Click(object sender, EventArgs e)
         {
             try
             {
