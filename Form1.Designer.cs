@@ -142,6 +142,7 @@
             this.boldButton.TabIndex = 18;
             this.boldButton.Text = "B";
             this.boldButton.UseVisualStyleBackColor = true;
+            this.boldButton.Click += new System.EventHandler(this.boldButton_Click);
             // 
             // italicsButton
             // 
@@ -152,6 +153,7 @@
             this.italicsButton.TabIndex = 19;
             this.italicsButton.Text = "I";
             this.italicsButton.UseVisualStyleBackColor = true;
+            this.italicsButton.Click += new System.EventHandler(this.italicsButton_Click);
             // 
             // underlineButton
             // 
@@ -162,6 +164,7 @@
             this.underlineButton.TabIndex = 20;
             this.underlineButton.Text = "U";
             this.underlineButton.UseVisualStyleBackColor = true;
+            this.underlineButton.Click += new System.EventHandler(this.underlineButton_Click);
             // 
             // Form1
             // 

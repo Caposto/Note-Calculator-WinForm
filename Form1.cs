@@ -8,6 +8,11 @@ namespace Note_Taking_Calculator_App
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
+        // Allow for the same buttons to style and unstyle text
+        public int isBolded = -1;
+        public int isItalicized = -1;
+        public int isUnderlined = -1;
+
         public Form1()
         {
             InitializeComponent();
@@ -135,6 +140,52 @@ namespace Note_Taking_Calculator_App
         {
             titleText.Clear();
             bodyText.Clear();
+        }
+
+        // FIXME: Make so that only selected text is 
+        // Bold Text
+        private void boldButton_Click(object sender, EventArgs e)
+        {
+            if (isBolded < 0)
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Bold);
+                isBolded *= -1;
+            }
+            else
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
+                isBolded *= -1;
+            }
+        }
+
+        // Italicize
+        private void italicsButton_Click(object sender, EventArgs e)
+        {
+            if (isItalicized < 0)
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Italic);
+                isItalicized *= -1;
+            }
+            else
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
+                isItalicized *= -1;
+            }
+        }
+
+        // Underline Text
+        private void underlineButton_Click(object sender, EventArgs e)
+        {
+            if (isUnderlined < 0)
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Underline);
+                isUnderlined *= -1;
+            }
+            else
+            {
+                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
+                isUnderlined *= -1;
+            }
         }
     }
 }
