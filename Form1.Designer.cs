@@ -37,6 +37,9 @@
             this.titleText = new System.Windows.Forms.TextBox();
             this.newButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.boldButton = new System.Windows.Forms.Button();
+            this.italicsButton = new System.Windows.Forms.Button();
+            this.underlineButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +61,7 @@
             this.deleteButton.TabIndex = 17;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = false;
-            this.deleteButton.Click += new System.EventHandler(deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // titleButton
             // 
@@ -77,7 +80,7 @@
             this.readButton.TabIndex = 16;
             this.readButton.Text = "Read";
             this.readButton.UseVisualStyleBackColor = true;
-            this.readButton.Click += new System.EventHandler(readButton_Click);
+            this.readButton.Click += new System.EventHandler(this.readButton_Click);
             // 
             // noteButton
             // 
@@ -96,7 +99,7 @@
             this.saveButton.TabIndex = 15;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // titleText
             // 
@@ -113,7 +116,7 @@
             this.newButton.TabIndex = 14;
             this.newButton.Text = "New";
             this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(newButton_Click);
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // dataGridView1
             // 
@@ -130,11 +133,44 @@
             this.dataGridView1.Size = new System.Drawing.Size(277, 313);
             this.dataGridView1.TabIndex = 13;
             // 
+            // boldButton
+            // 
+            this.boldButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.boldButton.Location = new System.Drawing.Point(79, 149);
+            this.boldButton.Name = "boldButton";
+            this.boldButton.Size = new System.Drawing.Size(29, 23);
+            this.boldButton.TabIndex = 18;
+            this.boldButton.Text = "B";
+            this.boldButton.UseVisualStyleBackColor = true;
+            // 
+            // italicsButton
+            // 
+            this.italicsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.italicsButton.Location = new System.Drawing.Point(79, 178);
+            this.italicsButton.Name = "italicsButton";
+            this.italicsButton.Size = new System.Drawing.Size(29, 23);
+            this.italicsButton.TabIndex = 19;
+            this.italicsButton.Text = "I";
+            this.italicsButton.UseVisualStyleBackColor = true;
+            // 
+            // underlineButton
+            // 
+            this.underlineButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.underlineButton.Location = new System.Drawing.Point(79, 207);
+            this.underlineButton.Name = "underlineButton";
+            this.underlineButton.Size = new System.Drawing.Size(29, 23);
+            this.underlineButton.TabIndex = 20;
+            this.underlineButton.Text = "U";
+            this.underlineButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
+            this.Controls.Add(this.underlineButton);
+            this.Controls.Add(this.italicsButton);
+            this.Controls.Add(this.boldButton);
             this.Controls.Add(this.bodyText);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.titleButton);
@@ -164,5 +200,8 @@
         private TextBox titleText;
         private Button newButton;
         private DataGridView dataGridView1;
+        private Button boldButton;
+        private Button italicsButton;
+        private Button underlineButton;
     }
 }
