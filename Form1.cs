@@ -142,7 +142,8 @@ namespace Note_Taking_Calculator_App
             bodyText.Clear();
         }
 
-        // FIXME: Make so that only selected text is 
+        // FIXME: Make so that only selected text is styled
+        // FIXME: Make sure the style is transferred/saved to xml files
         // Bold Text
         private void boldButton_Click(object sender, EventArgs e)
         {
@@ -173,7 +174,7 @@ namespace Note_Taking_Calculator_App
             }
         }
 
-        // Underline Text
+        // Underline Text - A is sexy and is learning git
         private void underlineButton_Click(object sender, EventArgs e)
         {
             if (isUnderlined < 0)
