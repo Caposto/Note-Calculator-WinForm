@@ -174,7 +174,7 @@ namespace Note_Taking_Calculator_App
             }
         }
 
-        // Underline Text - A is sexy and is learning git
+        // Underline Text
         private void underlineButton_Click(object sender, EventArgs e)
         {
             if (isUnderlined < 0)
