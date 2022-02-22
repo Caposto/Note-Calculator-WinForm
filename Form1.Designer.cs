@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bodyText = new System.Windows.Forms.TextBox();
             this.deleteButton = new System.Windows.Forms.Button();
             this.titleButton = new System.Windows.Forms.Label();
             this.readButton = new System.Windows.Forms.Button();
@@ -40,16 +39,9 @@
             this.boldButton = new System.Windows.Forms.Button();
             this.italicsButton = new System.Windows.Forms.Button();
             this.underlineButton = new System.Windows.Forms.Button();
+            this.bodyText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bodyText
-            // 
-            this.bodyText.Location = new System.Drawing.Point(138, 112);
-            this.bodyText.Multiline = true;
-            this.bodyText.Name = "bodyText";
-            this.bodyText.Size = new System.Drawing.Size(456, 269);
-            this.bodyText.TabIndex = 12;
             // 
             // deleteButton
             // 
@@ -166,15 +158,23 @@
             this.underlineButton.UseVisualStyleBackColor = true;
             this.underlineButton.Click += new System.EventHandler(this.underlineButton_Click);
             // 
+            // bodyText
+            // 
+            this.bodyText.Location = new System.Drawing.Point(138, 120);
+            this.bodyText.Name = "bodyText";
+            this.bodyText.Size = new System.Drawing.Size(456, 261);
+            this.bodyText.TabIndex = 21;
+            this.bodyText.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
+            this.Controls.Add(this.bodyText);
             this.Controls.Add(this.underlineButton);
             this.Controls.Add(this.italicsButton);
             this.Controls.Add(this.boldButton);
-            this.Controls.Add(this.bodyText);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.titleButton);
             this.Controls.Add(this.readButton);
@@ -193,8 +193,6 @@
         }
 
         #endregion
-
-        private TextBox bodyText;
         private Button deleteButton;
         private Label titleButton;
         private Button readButton;
@@ -206,5 +204,6 @@
         private Button boldButton;
         private Button italicsButton;
         private Button underlineButton;
+        private RichTextBox bodyText;
     }
 }

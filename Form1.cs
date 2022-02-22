@@ -8,11 +8,6 @@ namespace Note_Taking_Calculator_App
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
-        // Allow for the same buttons to style and unstyle text
-        public int isBolded = -1;
-        public int isItalicized = -1;
-        public int isUnderlined = -1;
-
         public Form1()
         {
             InitializeComponent();
@@ -66,6 +61,7 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
+        // FIXME: How to transfer fontstyle to xml file
         private void saveButton_Click(object sender, EventArgs e)
         {
             // Create a new .xml file
@@ -142,50 +138,50 @@ namespace Note_Taking_Calculator_App
             bodyText.Clear();
         }
 
-        // FIXME: Make so that only selected text is styled
+        // FIXME: Make it so that you can use ctrl + b
         // FIXME: Make sure the style is transferred/saved to xml files
         // Bold Text
         private void boldButton_Click(object sender, EventArgs e)
         {
-            if (isBolded < 0)
+            if (bodyText.SelectionFont != null)
             {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Bold);
-                isBolded *= -1;
-            }
-            else
-            {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
-                isBolded *= -1;
+                System.Drawing.Font currentFont = bodyText.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+
+                if (bodyText.SelectionFont.Bold == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Bold;
+
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
 
         // Italicize
         private void italicsButton_Click(object sender, EventArgs e)
         {
-            if (isItalicized < 0)
+            if (bodyText.SelectionFont != null)
             {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Italic);
-                isItalicized *= -1;
-            }
-            else
-            {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
-                isItalicized *= -1;
+                System.Drawing.Font currentFont = bodyText.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+
+                if (bodyText.SelectionFont.Italic == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Italic;
+
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
 
-        // Underline Text - A is sexy and is learning git
+        // Underline Text
         private void underlineButton_Click(object sender, EventArgs e)
         {
-            if (isUnderlined < 0)
+            if (bodyText.SelectionFont != null)
             {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Underline);
-                isUnderlined *= -1;
-            }
-            else
-            {
-                bodyText.Font = new Font(bodyText.Font.FontFamily, bodyText.Font.Size, FontStyle.Regular);
-                isUnderlined *= -1;
+                System.Drawing.Font currentFont = bodyText.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+
+                if (bodyText.SelectionFont.Underline == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Underline;
+
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
     }
