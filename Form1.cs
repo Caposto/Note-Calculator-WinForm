@@ -19,6 +19,12 @@ namespace Note_Taking_Calculator_App
             // Check to see if user has a notes folder
             if (Directory.Exists(NoteDirectory))
             {
+                // Initialize the Font Selection
+                foreach (FontFamily Font in FontFamily.Families)
+                {
+                    fontStyleBox.Items.Add(Font.Name.ToString());
+                }
+
                 // Get only .xml files
                 FileInfo[] xmlDocs = Dir.GetFiles("*.xml");
 
@@ -140,17 +146,16 @@ namespace Note_Taking_Calculator_App
 
         // FIXME: Make it so that you can use ctrl + b
         // FIXME: Make sure the style is transferred/saved to xml files
+        // FIXME: Keep style buttons highlighted while in use
         // Bold Text
         private void boldButton_Click(object sender, EventArgs e)
         {
             if (bodyText.SelectionFont != null)
             {
-                System.Drawing.Font currentFont = bodyText.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
                 if (bodyText.SelectionFont.Bold == true) newFontStyle = FontStyle.Regular;
                 else newFontStyle = FontStyle.Bold;
-
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
@@ -160,12 +165,10 @@ namespace Note_Taking_Calculator_App
         {
             if (bodyText.SelectionFont != null)
             {
-                System.Drawing.Font currentFont = bodyText.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
                 if (bodyText.SelectionFont.Italic == true) newFontStyle = FontStyle.Regular;
                 else newFontStyle = FontStyle.Italic;
-
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
@@ -175,14 +178,22 @@ namespace Note_Taking_Calculator_App
         {
             if (bodyText.SelectionFont != null)
             {
-                System.Drawing.Font currentFont = bodyText.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
                 if (bodyText.SelectionFont.Underline == true) newFontStyle = FontStyle.Regular;
                 else newFontStyle = FontStyle.Underline;
-
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
+
+        // For changing the font of the 
+        private void fontStyleBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                bodyText.SelectionFont = new Font(fontStyleBox.Text, fontStyleBox.Font.Size);
+            }
+        }
+      
     }
 }

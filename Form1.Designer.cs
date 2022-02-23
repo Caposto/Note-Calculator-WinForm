@@ -40,6 +40,8 @@
             this.italicsButton = new System.Windows.Forms.Button();
             this.underlineButton = new System.Windows.Forms.Button();
             this.bodyText = new System.Windows.Forms.RichTextBox();
+            this.fontStyleBox = new System.Windows.Forms.ComboBox();
+            this.fontColorBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,11 +168,32 @@
             this.bodyText.TabIndex = 21;
             this.bodyText.Text = "";
             // 
+            // fontStyleBox
+            // 
+            this.fontStyleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontStyleBox.FormattingEnabled = true;
+            this.fontStyleBox.Location = new System.Drawing.Point(12, 236);
+            this.fontStyleBox.Name = "fontStyleBox";
+            this.fontStyleBox.Size = new System.Drawing.Size(121, 23);
+            this.fontStyleBox.TabIndex = 22;
+            this.fontStyleBox.SelectedIndexChanged += new System.EventHandler(this.fontStyleBox_SelectedIndexChanged);
+            // 
+            // fontColorBox
+            // 
+            this.fontColorBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontColorBox.FormattingEnabled = true;
+            this.fontColorBox.Location = new System.Drawing.Point(12, 265);
+            this.fontColorBox.Name = "fontColorBox";
+            this.fontColorBox.Size = new System.Drawing.Size(121, 23);
+            this.fontColorBox.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
+            this.Controls.Add(this.fontColorBox);
+            this.Controls.Add(this.fontStyleBox);
             this.Controls.Add(this.bodyText);
             this.Controls.Add(this.underlineButton);
             this.Controls.Add(this.italicsButton);
@@ -205,5 +228,7 @@
         private Button italicsButton;
         private Button underlineButton;
         private RichTextBox bodyText;
+        private ComboBox fontStyleBox;
+        private ComboBox fontColorBox;
     }
 }
