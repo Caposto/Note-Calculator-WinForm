@@ -40,8 +40,8 @@
             this.italicsButton = new System.Windows.Forms.Button();
             this.underlineButton = new System.Windows.Forms.Button();
             this.bodyText = new System.Windows.Forms.RichTextBox();
-            this.fontStyleBox = new System.Windows.Forms.ComboBox();
-            this.fontColorBox = new System.Windows.Forms.ComboBox();
+            this.fontBox = new System.Windows.Forms.ComboBox();
+            this.fontSizeBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,32 +168,50 @@
             this.bodyText.TabIndex = 21;
             this.bodyText.Text = "";
             // 
-            // fontStyleBox
+            // fontBox
             // 
-            this.fontStyleBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.fontStyleBox.FormattingEnabled = true;
-            this.fontStyleBox.Location = new System.Drawing.Point(12, 236);
-            this.fontStyleBox.Name = "fontStyleBox";
-            this.fontStyleBox.Size = new System.Drawing.Size(121, 23);
-            this.fontStyleBox.TabIndex = 22;
-            this.fontStyleBox.SelectedIndexChanged += new System.EventHandler(this.fontStyleBox_SelectedIndexChanged);
+            this.fontBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontBox.FormattingEnabled = true;
+            this.fontBox.Location = new System.Drawing.Point(12, 236);
+            this.fontBox.Name = "fontBox";
+            this.fontBox.Size = new System.Drawing.Size(121, 23);
+            this.fontBox.TabIndex = 22;
+            this.fontBox.SelectedIndexChanged += new System.EventHandler(this.fontBox_SelectedIndexChanged);
             // 
-            // fontColorBox
+            // fontSizeBox
             // 
-            this.fontColorBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.fontColorBox.FormattingEnabled = true;
-            this.fontColorBox.Location = new System.Drawing.Point(12, 265);
-            this.fontColorBox.Name = "fontColorBox";
-            this.fontColorBox.Size = new System.Drawing.Size(121, 23);
-            this.fontColorBox.TabIndex = 23;
+            this.fontSizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontSizeBox.FormattingEnabled = true;
+            this.fontSizeBox.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20",
+            "22",
+            "24",
+            "26",
+            "28",
+            "36",
+            "48",
+            "72"});
+            this.fontSizeBox.Location = new System.Drawing.Point(12, 265);
+            this.fontSizeBox.Name = "fontSizeBox";
+            this.fontSizeBox.Size = new System.Drawing.Size(121, 23);
+            this.fontSizeBox.TabIndex = 23;
+            this.fontSizeBox.SelectedIndexChanged += new System.EventHandler(this.fontSizeBox_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
-            this.Controls.Add(this.fontColorBox);
-            this.Controls.Add(this.fontStyleBox);
+            this.Controls.Add(this.fontSizeBox);
+            this.Controls.Add(this.fontBox);
             this.Controls.Add(this.bodyText);
             this.Controls.Add(this.underlineButton);
             this.Controls.Add(this.italicsButton);
@@ -228,7 +246,7 @@
         private Button italicsButton;
         private Button underlineButton;
         private RichTextBox bodyText;
-        private ComboBox fontStyleBox;
-        private ComboBox fontColorBox;
+        private ComboBox fontBox;
+        private ComboBox fontSizeBox;
     }
 }

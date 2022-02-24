@@ -22,7 +22,7 @@ namespace Note_Taking_Calculator_App
                 // Initialize the Font Selection
                 foreach (FontFamily Font in FontFamily.Families)
                 {
-                    fontStyleBox.Items.Add(Font.Name.ToString());
+                    fontBox.Items.Add(Font.Name.ToString());
                 }
 
                 // Get only .xml files
@@ -123,6 +123,7 @@ namespace Note_Taking_Calculator_App
                 string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
                 File.Delete(NoteDirectory + selectedFileName);
                 updateNotes();
+                clearText();
             }
             catch (NullReferenceException)
             {
@@ -186,14 +187,27 @@ namespace Note_Taking_Calculator_App
             }
         }
 
-        // For changing the font of the 
-        private void fontStyleBox_SelectedIndexChanged(object sender, EventArgs e)
+        // For changing the font type
+        private void fontBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bodyText.SelectionFont != null)
             {
-                bodyText.SelectionFont = new Font(fontStyleBox.Text, fontStyleBox.Font.Size);
+                bodyText.SelectionFont = new Font(fontBox.Text, fontBox.Font.Size);
             }
         }
-      
+
+        // For changing the font size
+        private void fontSizeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                Font currentFont = bodyText.SelectionFont;
+                if (fontSizeBox.SelectedItem != null)
+                {
+                    float selectedSize = float.Parse(fontSizeBox.SelectedItem.ToString());
+                    bodyText.SelectionFont = new Font(currentFont.FontFamily, selectedSize);
+                }
+            }
+        }
     }
 }
