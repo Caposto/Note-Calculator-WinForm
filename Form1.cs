@@ -19,6 +19,12 @@ namespace Note_Taking_Calculator_App
             // Check to see if user has a notes folder
             if (Directory.Exists(NoteDirectory))
             {
+                // Initialize the Font Selection
+                foreach (FontFamily Font in FontFamily.Families)
+                {
+                    fontBox.Items.Add(Font.Name.ToString());
+                }
+
                 // Get only .xml files
                 FileInfo[] xmlDocs = Dir.GetFiles("*.xml");
 
@@ -61,6 +67,7 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
+        // FIXME: How to transfer fontstyle to xml file
         private void saveButton_Click(object sender, EventArgs e)
         {
             // Create a new .xml file
@@ -116,6 +123,7 @@ namespace Note_Taking_Calculator_App
                 string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
                 File.Delete(NoteDirectory + selectedFileName);
                 updateNotes();
+                clearText();
             }
             catch (NullReferenceException)
             {
@@ -135,6 +143,71 @@ namespace Note_Taking_Calculator_App
         {
             titleText.Clear();
             bodyText.Clear();
+        }
+
+        // FIXME: Make it so that you can use ctrl + b
+        // FIXME: Make sure the style is transferred/saved to xml files
+        // FIXME: Keep style buttons highlighted while in use
+        // Bold Text
+        private void boldButton_Click(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
+                if (bodyText.SelectionFont.Bold == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Bold;
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
+            }
+        }
+
+        // Italicize
+        private void italicsButton_Click(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
+                if (bodyText.SelectionFont.Italic == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Italic;
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
+            }
+        }
+
+        // Underline Text
+        private void underlineButton_Click(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                Font currentFont = bodyText.SelectionFont;
+                FontStyle newFontStyle;
+                if (bodyText.SelectionFont.Underline == true) newFontStyle = FontStyle.Regular;
+                else newFontStyle = FontStyle.Underline;
+                bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
+            }
+        }
+
+        // For changing the font type
+        private void fontBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                bodyText.SelectionFont = new Font(fontBox.Text, fontBox.Font.Size);
+            }
+        }
+
+        // For changing the font size
+        private void fontSizeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bodyText.SelectionFont != null)
+            {
+                Font currentFont = bodyText.SelectionFont;
+                if (fontSizeBox.SelectedItem != null)
+                {
+                    float selectedSize = float.Parse(fontSizeBox.SelectedItem.ToString());
+                    bodyText.SelectionFont = new Font(currentFont.FontFamily, selectedSize);
+                }
+            }
         }
     }
 }

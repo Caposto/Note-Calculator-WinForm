@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bodyText = new System.Windows.Forms.TextBox();
             this.deleteButton = new System.Windows.Forms.Button();
             this.titleButton = new System.Windows.Forms.Label();
             this.readButton = new System.Windows.Forms.Button();
@@ -37,16 +36,14 @@
             this.titleText = new System.Windows.Forms.TextBox();
             this.newButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.boldButton = new System.Windows.Forms.Button();
+            this.italicsButton = new System.Windows.Forms.Button();
+            this.underlineButton = new System.Windows.Forms.Button();
+            this.bodyText = new System.Windows.Forms.RichTextBox();
+            this.fontBox = new System.Windows.Forms.ComboBox();
+            this.fontSizeBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bodyText
-            // 
-            this.bodyText.Location = new System.Drawing.Point(138, 112);
-            this.bodyText.Multiline = true;
-            this.bodyText.Name = "bodyText";
-            this.bodyText.Size = new System.Drawing.Size(456, 269);
-            this.bodyText.TabIndex = 12;
             // 
             // deleteButton
             // 
@@ -58,7 +55,7 @@
             this.deleteButton.TabIndex = 17;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = false;
-            this.deleteButton.Click += new System.EventHandler(deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // titleButton
             // 
@@ -77,7 +74,7 @@
             this.readButton.TabIndex = 16;
             this.readButton.Text = "Read";
             this.readButton.UseVisualStyleBackColor = true;
-            this.readButton.Click += new System.EventHandler(readButton_Click);
+            this.readButton.Click += new System.EventHandler(this.readButton_Click);
             // 
             // noteButton
             // 
@@ -96,7 +93,7 @@
             this.saveButton.TabIndex = 15;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(saveButton_Click);
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // titleText
             // 
@@ -113,7 +110,7 @@
             this.newButton.TabIndex = 14;
             this.newButton.Text = "New";
             this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(newButton_Click);
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // dataGridView1
             // 
@@ -130,12 +127,95 @@
             this.dataGridView1.Size = new System.Drawing.Size(277, 313);
             this.dataGridView1.TabIndex = 13;
             // 
+            // boldButton
+            // 
+            this.boldButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.boldButton.Location = new System.Drawing.Point(79, 149);
+            this.boldButton.Name = "boldButton";
+            this.boldButton.Size = new System.Drawing.Size(29, 23);
+            this.boldButton.TabIndex = 18;
+            this.boldButton.Text = "B";
+            this.boldButton.UseVisualStyleBackColor = true;
+            this.boldButton.Click += new System.EventHandler(this.boldButton_Click);
+            // 
+            // italicsButton
+            // 
+            this.italicsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.italicsButton.Location = new System.Drawing.Point(79, 178);
+            this.italicsButton.Name = "italicsButton";
+            this.italicsButton.Size = new System.Drawing.Size(29, 23);
+            this.italicsButton.TabIndex = 19;
+            this.italicsButton.Text = "I";
+            this.italicsButton.UseVisualStyleBackColor = true;
+            this.italicsButton.Click += new System.EventHandler(this.italicsButton_Click);
+            // 
+            // underlineButton
+            // 
+            this.underlineButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.underlineButton.Location = new System.Drawing.Point(79, 207);
+            this.underlineButton.Name = "underlineButton";
+            this.underlineButton.Size = new System.Drawing.Size(29, 23);
+            this.underlineButton.TabIndex = 20;
+            this.underlineButton.Text = "U";
+            this.underlineButton.UseVisualStyleBackColor = true;
+            this.underlineButton.Click += new System.EventHandler(this.underlineButton_Click);
+            // 
+            // bodyText
+            // 
+            this.bodyText.Location = new System.Drawing.Point(138, 120);
+            this.bodyText.Name = "bodyText";
+            this.bodyText.Size = new System.Drawing.Size(456, 261);
+            this.bodyText.TabIndex = 21;
+            this.bodyText.Text = "";
+            // 
+            // fontBox
+            // 
+            this.fontBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontBox.FormattingEnabled = true;
+            this.fontBox.Location = new System.Drawing.Point(12, 236);
+            this.fontBox.Name = "fontBox";
+            this.fontBox.Size = new System.Drawing.Size(121, 23);
+            this.fontBox.TabIndex = 22;
+            this.fontBox.SelectedIndexChanged += new System.EventHandler(this.fontBox_SelectedIndexChanged);
+            // 
+            // fontSizeBox
+            // 
+            this.fontSizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fontSizeBox.FormattingEnabled = true;
+            this.fontSizeBox.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20",
+            "22",
+            "24",
+            "26",
+            "28",
+            "36",
+            "48",
+            "72"});
+            this.fontSizeBox.Location = new System.Drawing.Point(12, 265);
+            this.fontSizeBox.Name = "fontSizeBox";
+            this.fontSizeBox.Size = new System.Drawing.Size(121, 23);
+            this.fontSizeBox.TabIndex = 23;
+            this.fontSizeBox.SelectedIndexChanged += new System.EventHandler(this.fontSizeBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
+            this.Controls.Add(this.fontSizeBox);
+            this.Controls.Add(this.fontBox);
             this.Controls.Add(this.bodyText);
+            this.Controls.Add(this.underlineButton);
+            this.Controls.Add(this.italicsButton);
+            this.Controls.Add(this.boldButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.titleButton);
             this.Controls.Add(this.readButton);
@@ -154,8 +234,6 @@
         }
 
         #endregion
-
-        private TextBox bodyText;
         private Button deleteButton;
         private Label titleButton;
         private Button readButton;
@@ -164,5 +242,11 @@
         private TextBox titleText;
         private Button newButton;
         private DataGridView dataGridView1;
+        private Button boldButton;
+        private Button italicsButton;
+        private Button underlineButton;
+        private RichTextBox bodyText;
+        private ComboBox fontBox;
+        private ComboBox fontSizeBox;
     }
 }
