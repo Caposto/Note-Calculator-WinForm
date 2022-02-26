@@ -8,6 +8,9 @@ namespace Note_Taking_Calculator_App
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
+        // Create new memory Stream for writing to .rtf files
+        MemoryStream noteInput = new MemoryStream();
+
         public Form1()
         {
             InitializeComponent();
@@ -17,20 +20,21 @@ namespace Note_Taking_Calculator_App
         private void Form1_Load_1(object sender, EventArgs e)
         {
             // Check to see if user has a notes folder
-            if (Directory.Exists(NoteDirectory))
+            if (Directory.Exists(NoteDirectory)) 
             {
                 // Initialize the Font Selection
-                foreach (FontFamily Font in FontFamily.Families)
+                foreach (FontFamily Font in FontFamily.Families) 
                 {
                     fontBox.Items.Add(Font.Name.ToString());
                 }
 
-                // Get only .xml files
-                FileInfo[] xmlDocs = Dir.GetFiles("*.xml");
+                // Get only .rtf files
+                FileInfo[] rtfDocs = Dir.GetFiles("*.rtf");
 
-                if (xmlDocs.Count() != 0)
+                // Display the current notes
+                if (rtfDocs.Count() != 0)
                 {
-                    dataGridView1.DataSource = xmlDocs;
+                    dataGridView1.DataSource = rtfDocs;
 
                     // Hide unwanted columns
                     string[] hiddenColumns = new string[] { "Length", "DirectoryName", "Directory", "IsReadOnly",
@@ -38,7 +42,7 @@ namespace Note_Taking_Calculator_App
                                                     "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
                                                     "LastWriteTime", "LastWriteTimeUTC", "LinkTarget", "Attributes"};
 
-                    foreach (string hiddenColumn in hiddenColumns)
+                    foreach (string hiddenColumn in hiddenColumns) 
                     {
                         dataGridView1.Columns[hiddenColumn].Visible = false;
                     }
@@ -47,15 +51,15 @@ namespace Note_Taking_Calculator_App
                     dataGridView1.Columns["Name"].HeaderText = "Title";
                     dataGridView1.Columns["Name"].Width = 275;
                 }
-                else
-                {
+                // If notes direcotry is empty prompt user to make a note
+                else{
                     titleText.Text = "Press New to Make a Note!";
                 }
             }
-            // If no notes folder found, make one title WinFormsNotes
+            // If no notes folder found, make one titled WinFormsNotes
             else
             {
-                titleText.Text = "Created a new folder for your Notes!";
+                titleText.Text = "Created a new folder for your notes @" + NoteDirectory;
                 Directory.CreateDirectory(NoteDirectory);
             }
         }
@@ -67,33 +71,35 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
-        // FIXME: How to transfer fontstyle to xml file
         private void saveButton_Click(object sender, EventArgs e)
         {
-            // Create a new .xml file
-            XmlWriterSettings NoteSettings = new XmlWriterSettings();
+            string fileName = titleText.Text + ".rtf";
+            bodyText.SaveFile(NoteDirectory + fileName);
 
-            NoteSettings.CheckCharacters = false;
-            NoteSettings.ConformanceLevel = ConformanceLevel.Auto;
-            NoteSettings.Indent = true;
+            /*
+            saveFileDialog1.CreatePrompt = true;
+            saveFileDialog1.OverwritePrompt = true;
+            saveFileDialog1.FileName = fileName;
+            saveFileDialog1.DefaultExt = fileName;
+            saveFileDialog1.Filter = "Rich Text Format files (*.rtf)|*.rtf|All files (*.*)|*.*";
+            saveFileDialog1.InitialDirectory = NoteDirectory;
 
-            string fileName = titleText.Text + ".xml";
+            DialogResult result = saveFileDialog1.ShowDialog();
+            Stream fileStream;
 
-            using (XmlWriter NewNote = XmlWriter.Create(NoteDirectory + fileName, NoteSettings))
-            {
-                NewNote.WriteStartDocument();
-                NewNote.WriteStartElement("Title");
-                NewNote.WriteElementString("body", bodyText.Text);
-                NewNote.WriteEndElement();
-                NewNote.Flush();
-                NewNote.Close();
-            }
+            if (result == DialogResult.OK) {
+                fileStream = saveFileDialog1.OpenFile();
+                noteInput.Position = 0;
+                noteInput.WriteTo(fileStream);
+                fileStream.Close();
+            }*/
 
             updateNotes();
             clearText();
         }
 
         // Read/Edit a note when read button clicked
+        // FIXME: try catch or if?
         private void readButton_Click(object sender, EventArgs e)
         {
             try
@@ -101,16 +107,18 @@ namespace Note_Taking_Calculator_App
                 // Index is equal to that of the cell selected
                 int index = dataGridView1.CurrentCell.RowIndex;
                 string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
-                // -4 trims the ".xml" part of the file
+                // -4 trims the ".rtf" part of the file
                 titleText.Text = selectedFileName.Substring(0, selectedFileName.Length - 4);
-                XmlDocument doc = new XmlDocument();
-
-                doc.Load(NoteDirectory + selectedFileName);
-                bodyText.Text = doc.SelectSingleNode("//body").InnerText;
+                bodyText.LoadFile(NoteDirectory + selectedFileName);
             }
+            // If read is clicked with no file selected
             catch (NullReferenceException)
             {
                 titleText.Text = "Select a file to read!";
+            }
+            catch (IOException)
+            {
+                titleText.Text = "File is open in antoher application! Close to read.";
             }
         }
 
@@ -135,7 +143,7 @@ namespace Note_Taking_Calculator_App
         // Used in the read and delete methods, updates the notes displayed gathering only .xml files
         private void updateNotes()
         {
-            dataGridView1.DataSource = Dir.GetFiles("*.xml");
+            dataGridView1.DataSource = Dir.GetFiles("*.rtf");
         }
 
         // Used in the new and save methods, clear texts in both the title and body text boxes
@@ -209,5 +217,6 @@ namespace Note_Taking_Calculator_App
                 }
             }
         }
+
     }
 }
