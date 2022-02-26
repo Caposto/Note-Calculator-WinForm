@@ -20,9 +20,11 @@ namespace Note_Taking_Calculator_App
         private void Form1_Load_1(object sender, EventArgs e)
         {
             // Check to see if user has a notes folder
-            if (Directory.Exists(NoteDirectory)) {
+            if (Directory.Exists(NoteDirectory)) 
+            {
                 // Initialize the Font Selection
-                foreach (FontFamily Font in FontFamily.Families) {
+                foreach (FontFamily Font in FontFamily.Families) 
+                {
                     fontBox.Items.Add(Font.Name.ToString());
                 }
 
@@ -40,7 +42,8 @@ namespace Note_Taking_Calculator_App
                                                     "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
                                                     "LastWriteTime", "LastWriteTimeUTC", "LinkTarget", "Attributes"};
 
-                    foreach (string hiddenColumn in hiddenColumns) {
+                    foreach (string hiddenColumn in hiddenColumns) 
+                    {
                         dataGridView1.Columns[hiddenColumn].Visible = false;
                     }
 
@@ -54,7 +57,8 @@ namespace Note_Taking_Calculator_App
                 }
             }
             // If no notes folder found, make one titled WinFormsNotes
-            else{
+            else
+            {
                 titleText.Text = "Created a new folder for your notes @" + NoteDirectory;
                 Directory.CreateDirectory(NoteDirectory);
             }
@@ -95,6 +99,7 @@ namespace Note_Taking_Calculator_App
         }
 
         // Read/Edit a note when read button clicked
+        // FIXME: try catch or if?
         private void readButton_Click(object sender, EventArgs e)
         {
             try
@@ -104,14 +109,16 @@ namespace Note_Taking_Calculator_App
                 string selectedFileName = dataGridView1.Rows[index].Cells["Name"].Value.ToString();
                 // -4 trims the ".rtf" part of the file
                 titleText.Text = selectedFileName.Substring(0, selectedFileName.Length - 4);
-                XmlDocument doc = new XmlDocument();
-
-                doc.Load(NoteDirectory + selectedFileName);
-                bodyText.Text = doc.SelectSingleNode("//body").InnerText;
+                bodyText.LoadFile(NoteDirectory + selectedFileName);
             }
+            // If read is clicked with no file selected
             catch (NullReferenceException)
             {
                 titleText.Text = "Select a file to read!";
+            }
+            catch (IOException)
+            {
+                titleText.Text = "File is open in antoher application! Close to read.";
             }
         }
 
