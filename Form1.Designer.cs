@@ -172,9 +172,9 @@
             // 
             this.fontBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fontBox.FormattingEnabled = true;
-            this.fontBox.Location = new System.Drawing.Point(12, 236);
+            this.fontBox.Location = new System.Drawing.Point(34, 236);
             this.fontBox.Name = "fontBox";
-            this.fontBox.Size = new System.Drawing.Size(121, 23);
+            this.fontBox.Size = new System.Drawing.Size(99, 23);
             this.fontBox.TabIndex = 22;
             this.fontBox.SelectedIndexChanged += new System.EventHandler(this.fontBox_SelectedIndexChanged);
             // 
@@ -199,9 +199,9 @@
             "36",
             "48",
             "72"});
-            this.fontSizeBox.Location = new System.Drawing.Point(12, 265);
+            this.fontSizeBox.Location = new System.Drawing.Point(79, 265);
             this.fontSizeBox.Name = "fontSizeBox";
-            this.fontSizeBox.Size = new System.Drawing.Size(121, 23);
+            this.fontSizeBox.Size = new System.Drawing.Size(54, 23);
             this.fontSizeBox.TabIndex = 23;
             this.fontSizeBox.SelectedIndexChanged += new System.EventHandler(this.fontSizeBox_SelectedIndexChanged);
             // 
@@ -248,5 +248,6 @@
         private RichTextBox bodyText;
         private ComboBox fontBox;
         private ComboBox fontSizeBox;
+        private SaveFileDialog saveFileDialog1;
     }
 }
