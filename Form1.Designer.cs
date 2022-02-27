@@ -42,6 +42,7 @@
             this.bodyText = new System.Windows.Forms.RichTextBox();
             this.fontBox = new System.Windows.Forms.ComboBox();
             this.fontSizeBox = new System.Windows.Forms.ComboBox();
+            this.bulletButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,11 +206,24 @@
             this.fontSizeBox.TabIndex = 23;
             this.fontSizeBox.SelectedIndexChanged += new System.EventHandler(this.fontSizeBox_SelectedIndexChanged);
             // 
+            // bulletButton
+            // 
+            this.bulletButton.BackgroundImage = global::Note_Taking_Calculator_App.Properties.Resources.bulletListIcon2;
+            this.bulletButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bulletButton.Location = new System.Drawing.Point(79, 294);
+            this.bulletButton.Name = "bulletButton";
+            this.bulletButton.Size = new System.Drawing.Size(29, 22);
+            this.bulletButton.TabIndex = 24;
+            this.bulletButton.Text = ".";
+            this.bulletButton.UseVisualStyleBackColor = true;
+            this.bulletButton.Click += new System.EventHandler(this.bulletButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 495);
+            this.Controls.Add(this.bulletButton);
             this.Controls.Add(this.fontSizeBox);
             this.Controls.Add(this.fontBox);
             this.Controls.Add(this.bodyText);
@@ -249,5 +263,6 @@
         private ComboBox fontBox;
         private ComboBox fontSizeBox;
         private SaveFileDialog saveFileDialog1;
+        private Button bulletButton;
     }
 }

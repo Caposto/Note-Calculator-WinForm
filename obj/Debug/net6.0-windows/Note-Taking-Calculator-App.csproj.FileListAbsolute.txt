@@ -49,3 +49,4 @@ C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-w
 C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\ref\Note-Taking-Calculator-App.dll
 C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.pdb
 C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note-Taking-Calculator-App.genruntimeconfig.cache
+C:\Users\chris\OneDrive\Documents\C# Code\Note-Taking-Winform\obj\Debug\net6.0-windows\Note_Taking_Calculator_App.Properties.Resources.resources

@@ -11,6 +11,12 @@ namespace Note_Taking_Calculator_App
         // Create new memory Stream for writing to .rtf files
         MemoryStream noteInput = new MemoryStream();
 
+        private static int noteCapacity = 100;
+
+        // For activating and deactivating lists
+        private bool bulletList = false;
+        private bool numberedList = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,10 +26,10 @@ namespace Note_Taking_Calculator_App
         private void Form1_Load_1(object sender, EventArgs e)
         {
             // Check to see if user has a notes folder
-            if (Directory.Exists(NoteDirectory)) 
+            if (Directory.Exists(NoteDirectory))
             {
                 // Initialize the Font Selection
-                foreach (FontFamily Font in FontFamily.Families) 
+                foreach (FontFamily Font in FontFamily.Families)
                 {
                     fontBox.Items.Add(Font.Name.ToString());
                 }
@@ -42,7 +48,7 @@ namespace Note_Taking_Calculator_App
                                                     "CreationTimeUTC", "LastAccessTime","LastAccessTimeUTC",
                                                     "LastWriteTime", "LastWriteTimeUTC", "LinkTarget", "Attributes"};
 
-                    foreach (string hiddenColumn in hiddenColumns) 
+                    foreach (string hiddenColumn in hiddenColumns)
                     {
                         dataGridView1.Columns[hiddenColumn].Visible = false;
                     }
@@ -52,7 +58,8 @@ namespace Note_Taking_Calculator_App
                     dataGridView1.Columns["Name"].Width = 275;
                 }
                 // If notes direcotry is empty prompt user to make a note
-                else{
+                else
+                {
                     titleText.Text = "Press New to Make a Note!";
                 }
             }
@@ -71,10 +78,22 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
+        // FIXME: set limit to the number of files in the directory, also prevent from saving a file with no name
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string fileName = titleText.Text + ".rtf";
-            bodyText.SaveFile(NoteDirectory + fileName);
+            /*
+            if (String.IsNullOrWhiteSpace(titleText.Text))
+            {
+                string fileName = titleText.Text + ".rtf";
+                bodyText.SaveFile(NoteDirectory + fileName);
+                updateNotes();
+                clearText();
+            }
+            else
+            {
+                titleText.Text = "Need a title!";
+            }
+            */
 
             /*
             saveFileDialog1.CreatePrompt = true;
@@ -94,8 +113,7 @@ namespace Note_Taking_Calculator_App
                 fileStream.Close();
             }*/
 
-            updateNotes();
-            clearText();
+
         }
 
         // Read/Edit a note when read button clicked
@@ -124,7 +142,7 @@ namespace Note_Taking_Calculator_App
 
         // Deletes a note when delete button is pressed
         private void deleteButton_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 int index = dataGridView1.CurrentCell.RowIndex;
@@ -218,5 +236,19 @@ namespace Note_Taking_Calculator_App
             }
         }
 
+        // Creates a bulleted list over selected text
+        private void bulletButton_Click(object sender, EventArgs e)
+        {
+            if (!bulletList)
+            {
+                bodyText.SelectionBullet = true;
+                bulletList = true;
+            }
+            else
+            {
+                bodyText.SelectionBullet = false;
+                bulletList = false;
+            }
+        }
     }
 }
