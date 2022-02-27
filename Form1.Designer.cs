@@ -48,7 +48,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.deleteButton.BackColor = System.Drawing.SystemColors.Control;
             this.deleteButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.deleteButton.Location = new System.Drawing.Point(381, 404);
             this.deleteButton.Name = "deleteButton";
@@ -130,19 +130,20 @@
             // 
             // boldButton
             // 
+            this.boldButton.BackColor = System.Drawing.SystemColors.Control;
             this.boldButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.boldButton.Location = new System.Drawing.Point(79, 149);
+            this.boldButton.Location = new System.Drawing.Point(23, 216);
             this.boldButton.Name = "boldButton";
             this.boldButton.Size = new System.Drawing.Size(29, 23);
             this.boldButton.TabIndex = 18;
             this.boldButton.Text = "B";
-            this.boldButton.UseVisualStyleBackColor = true;
+            this.boldButton.UseVisualStyleBackColor = false;
             this.boldButton.Click += new System.EventHandler(this.boldButton_Click);
             // 
             // italicsButton
             // 
             this.italicsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.italicsButton.Location = new System.Drawing.Point(79, 178);
+            this.italicsButton.Location = new System.Drawing.Point(94, 215);
             this.italicsButton.Name = "italicsButton";
             this.italicsButton.Size = new System.Drawing.Size(29, 23);
             this.italicsButton.TabIndex = 19;
@@ -153,7 +154,7 @@
             // underlineButton
             // 
             this.underlineButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
-            this.underlineButton.Location = new System.Drawing.Point(79, 207);
+            this.underlineButton.Location = new System.Drawing.Point(58, 215);
             this.underlineButton.Name = "underlineButton";
             this.underlineButton.Size = new System.Drawing.Size(29, 23);
             this.underlineButton.TabIndex = 20;
@@ -173,7 +174,7 @@
             // 
             this.fontBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fontBox.FormattingEnabled = true;
-            this.fontBox.Location = new System.Drawing.Point(34, 236);
+            this.fontBox.Location = new System.Drawing.Point(24, 158);
             this.fontBox.Name = "fontBox";
             this.fontBox.Size = new System.Drawing.Size(99, 23);
             this.fontBox.TabIndex = 22;
@@ -200,7 +201,7 @@
             "36",
             "48",
             "72"});
-            this.fontSizeBox.Location = new System.Drawing.Point(79, 265);
+            this.fontSizeBox.Location = new System.Drawing.Point(24, 187);
             this.fontSizeBox.Name = "fontSizeBox";
             this.fontSizeBox.Size = new System.Drawing.Size(54, 23);
             this.fontSizeBox.TabIndex = 23;
@@ -210,7 +211,7 @@
             // 
             this.bulletButton.BackgroundImage = global::Note_Taking_Calculator_App.Properties.Resources.bulletListIcon2;
             this.bulletButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bulletButton.Location = new System.Drawing.Point(79, 294);
+            this.bulletButton.Location = new System.Drawing.Point(93, 187);
             this.bulletButton.Name = "bulletButton";
             this.bulletButton.Size = new System.Drawing.Size(29, 22);
             this.bulletButton.TabIndex = 24;
@@ -222,6 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(984, 495);
             this.Controls.Add(this.bulletButton);
             this.Controls.Add(this.fontSizeBox);
@@ -262,7 +264,6 @@
         private RichTextBox bodyText;
         private ComboBox fontBox;
         private ComboBox fontSizeBox;
-        private SaveFileDialog saveFileDialog1;
         private Button bulletButton;
     }
 }

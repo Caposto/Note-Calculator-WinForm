@@ -8,14 +8,8 @@ namespace Note_Taking_Calculator_App
         private static string NoteDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Notes\WinFormsNotes\";
         private DirectoryInfo Dir = new DirectoryInfo(NoteDirectory);
 
-        // Create new memory Stream for writing to .rtf files
-        MemoryStream noteInput = new MemoryStream();
-
-        private static int noteCapacity = 100;
-
         // For activating and deactivating lists
         private bool bulletList = false;
-        private bool numberedList = false;
 
         public Form1()
         {
@@ -78,46 +72,34 @@ namespace Note_Taking_Calculator_App
         }
 
         // Save a note on save button press by creating a new xml file in the Note Directory
-        // FIXME: set limit to the number of files in the directory, also prevent from saving a file with no name
         private void saveButton_Click(object sender, EventArgs e)
         {
-            /*
-            if (String.IsNullOrWhiteSpace(titleText.Text))
+            if (!String.IsNullOrEmpty(titleText.Text))
             {
                 string fileName = titleText.Text + ".rtf";
-                bodyText.SaveFile(NoteDirectory + fileName);
-                updateNotes();
-                clearText();
+                if (File.Exists(NoteDirectory + fileName))
+                {
+                   if (MessageBox.Show("File Name Already Exists. Would you like to Overwrite?", "Important", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                   {
+                        bodyText.SaveFile(NoteDirectory + fileName);
+                        updateNotes();
+                        clearText();
+                   }
+                }
+                else
+                {
+                    bodyText.SaveFile(NoteDirectory + fileName);
+                    updateNotes();
+                    clearText();
+                }
             }
             else
             {
-                titleText.Text = "Need a title!";
+                throwMsgBoxError("Need a title!");
             }
-            */
-
-            /*
-            saveFileDialog1.CreatePrompt = true;
-            saveFileDialog1.OverwritePrompt = true;
-            saveFileDialog1.FileName = fileName;
-            saveFileDialog1.DefaultExt = fileName;
-            saveFileDialog1.Filter = "Rich Text Format files (*.rtf)|*.rtf|All files (*.*)|*.*";
-            saveFileDialog1.InitialDirectory = NoteDirectory;
-
-            DialogResult result = saveFileDialog1.ShowDialog();
-            Stream fileStream;
-
-            if (result == DialogResult.OK) {
-                fileStream = saveFileDialog1.OpenFile();
-                noteInput.Position = 0;
-                noteInput.WriteTo(fileStream);
-                fileStream.Close();
-            }*/
-
-
         }
 
         // Read/Edit a note when read button clicked
-        // FIXME: try catch or if?
         private void readButton_Click(object sender, EventArgs e)
         {
             try
@@ -132,17 +114,17 @@ namespace Note_Taking_Calculator_App
             // If read is clicked with no file selected
             catch (NullReferenceException)
             {
-                titleText.Text = "Select a file to read!";
+                throwMsgBoxError("Select a file to read!");
             }
             catch (IOException)
             {
-                titleText.Text = "File is open in antoher application! Close to read.";
+                throwMsgBoxError("File is open in antoher application! Close to read.");
             }
         }
 
         // Deletes a note when delete button is pressed
         private void deleteButton_Click(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 int index = dataGridView1.CurrentCell.RowIndex;
@@ -153,36 +135,27 @@ namespace Note_Taking_Calculator_App
             }
             catch (NullReferenceException)
             {
-                titleText.Text = "Cannot delete nothing!";
+                throwMsgBoxError("Select a file to delete.");
             }
-
         }
 
-        // Used in the read and delete methods, updates the notes displayed gathering only .xml files
-        private void updateNotes()
-        {
-            dataGridView1.DataSource = Dir.GetFiles("*.rtf");
-        }
-
-        // Used in the new and save methods, clear texts in both the title and body text boxes
-        private void clearText()
-        {
-            titleText.Clear();
-            bodyText.Clear();
-        }
-
-        // FIXME: Make it so that you can use ctrl + b
-        // FIXME: Make sure the style is transferred/saved to xml files
-        // FIXME: Keep style buttons highlighted while in use
-        // Bold Text
+        // Bold
         private void boldButton_Click(object sender, EventArgs e)
         {
             if (bodyText.SelectionFont != null)
             {
                 Font currentFont = bodyText.SelectionFont;
                 FontStyle newFontStyle;
-                if (bodyText.SelectionFont.Bold == true) newFontStyle = FontStyle.Regular;
-                else newFontStyle = FontStyle.Bold;
+                if (bodyText.SelectionFont.Bold == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                    underlineButton.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Bold;
+                    underlineButton.BackColor = SystemColors.ControlDark;
+                }
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
@@ -194,21 +167,37 @@ namespace Note_Taking_Calculator_App
             {
                 Font currentFont = bodyText.SelectionFont;
                 FontStyle newFontStyle;
-                if (bodyText.SelectionFont.Italic == true) newFontStyle = FontStyle.Regular;
-                else newFontStyle = FontStyle.Italic;
+                if (bodyText.SelectionFont.Italic == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                    underlineButton.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Italic;
+                    underlineButton.BackColor = SystemColors.ControlDark;
+                }
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
 
-        // Underline Text
+        // Underline
         private void underlineButton_Click(object sender, EventArgs e)
         {
             if (bodyText.SelectionFont != null)
             {
                 Font currentFont = bodyText.SelectionFont;
                 FontStyle newFontStyle;
-                if (bodyText.SelectionFont.Underline == true) newFontStyle = FontStyle.Regular;
-                else newFontStyle = FontStyle.Underline;
+                if (bodyText.SelectionFont.Underline == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                    underlineButton.BackColor = SystemColors.Control;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Underline;
+                    underlineButton.BackColor = SystemColors.ControlDark;
+                }
                 bodyText.SelectionFont = new Font(currentFont.FontFamily, currentFont.Size, newFontStyle);
             }
         }
@@ -249,6 +238,24 @@ namespace Note_Taking_Calculator_App
                 bodyText.SelectionBullet = false;
                 bulletList = false;
             }
+        }
+
+        // Used in the read and delete methods, updates the notes displayed gathering only .xml files
+        private void updateNotes()
+        {
+            dataGridView1.DataSource = Dir.GetFiles("*.rtf");
+        }
+
+        // Used in the new and save methods, clear texts in both the title and body text boxes
+        private void clearText()
+        {
+            titleText.Clear();
+            bodyText.Clear();
+        }
+
+        private void throwMsgBoxError(String errorMsg)
+        {
+            MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
